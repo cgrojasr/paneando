@@ -21,11 +21,11 @@ public class ProductoDAO {
     public ProductoDAO(Context context) {
         db = new dbPaneandoLite(context);
         this.context = context;
-        dbSQLite = db.getWritableDatabase();
     }
 
     public void Registrar(Producto objProducto) {
         try {
+            dbSQLite = db.getWritableDatabase();
             ContentValues productoContent = new ContentValues();
             productoContent.put("nombre", objProducto.getNombre());
             productoContent.put("valor_venta", objProducto.getValor_venta());
@@ -36,9 +36,10 @@ public class ProductoDAO {
     }
 
     public List<Producto> Listar(){
+        dbSQLite = db.getWritableDatabase();
         List<Producto> productos = new ArrayList<>();
         try{
-           Cursor cursor = dbSQLite.rawQuery("SELECT * FROM productos", null);
+           Cursor cursor = dbSQLite.rawQuery("SELECT * FROM producto", null);
            while (cursor.moveToNext()){
                productos.add(new Producto(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2)));
            }

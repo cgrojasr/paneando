@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -22,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnIngresar;
     EditText txtUsuario, txtPassword;
-    ProductoDAO objProductoDAO;
+    ProductoDAO objProductoDAO = new ProductoDAO(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadProductos();
-
+        List<Producto> productos = objProductoDAO.Listar();
         setComponents();
 
         btnIngresar.setOnClickListener(view->{
