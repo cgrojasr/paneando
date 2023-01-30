@@ -3,10 +3,21 @@ package edu.upc.paneando;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.upc.paneando.dao.CarritoItemDAO;
+import edu.upc.paneando.dao.ProductoDAO;
+import edu.upc.paneando.models.CarritoItem;
+import edu.upc.paneando.util.CarritoItemAdapter;
+import edu.upc.paneando.util.CustomAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +34,10 @@ public class CarritoFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView rcvCarritoItem;
+    private CarritoItemDAO objCarritoItemDAO;
+    private List<CarritoItem> items = new ArrayList<>();
+    private CarritoItemAdapter adapter;
 
     public CarritoFragment() {
         // Required empty public constructor
@@ -59,6 +74,15 @@ public class CarritoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carrito, container, false);
+        View view = inflater.inflate(R.layout.fragment_carrito, container, false);
+        rcvCarritoItem = view.findViewById(R.id.rcvCarritoItem);
+        rcvCarritoItem.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        objCarritoItemDAO = new CarritoItemDAO(getContext());
+        items = objCarritoItemDAO.Listar();
+        adapter = new CarritoItemAdapter(getContext(), items);
+        rcvCarritoItem.setAdapter(adapter);
+
+        return view;
     }
 }

@@ -54,4 +54,26 @@ public class CarritoItemDAO {
         }
         return items;
     }
+
+    public void Eliminar_Todo(){
+        dbSQLite = db.getWritableDatabase();
+        try{
+            dbSQLite.delete("carrito_item", null, null);
+            dbSQLite.close();
+        }
+        catch (Exception e){
+            Log.d("=>", e.getMessage());
+        }
+    }
+
+    public void Eliminar_PorId(Integer id){
+        dbSQLite = db.getWritableDatabase();
+        try{
+            dbSQLite.delete("carrito_item", "id_item="+id, null);
+            dbSQLite.close();
+        }
+        catch (Exception e){
+            Log.d("=>", e.getMessage());
+        }
+    }
 }

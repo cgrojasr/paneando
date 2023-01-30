@@ -51,7 +51,7 @@ public class ProductoDAO {
         return productos;
     }
 
-    public void Eliminar_Productos(){
+    public void Eliminar_Todo(){
         dbSQLite = db.getWritableDatabase();
         dbSQLite.delete("producto", null, null);
         dbSQLite.close();

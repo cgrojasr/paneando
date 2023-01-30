@@ -16,7 +16,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import edu.upc.paneando.dao.CarritoItemDAO;
 import edu.upc.paneando.dao.ProductoDAO;
+import edu.upc.paneando.models.CarritoItem;
 import edu.upc.paneando.models.Producto;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnIngresar;
     EditText txtUsuario, txtPassword;
     ProductoDAO objProductoDAO = new ProductoDAO(this);
+    CarritoItemDAO objCarritoItemDAO = new CarritoItemDAO(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadProductos(){
-        objProductoDAO = new ProductoDAO(this);
-        objProductoDAO.Eliminar_Productos();
+        //objProductoDAO = new ProductoDAO(this);
+
+        //Limpieza de las tablas
+        objProductoDAO.Eliminar_Todo();
+        objCarritoItemDAO.Eliminar_Todo();
+
         Producto producto = new Producto("Pan frances", 0.4, R.drawable.panenado_frances);
         objProductoDAO.Registrar(producto);
         producto = new Producto("Pan yema", 0.4, R.drawable.panenado_yema);
