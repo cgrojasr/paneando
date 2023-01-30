@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class CatalogoActivity extends AppCompatActivity {
-
     private BottomNavigationView navMenuPrincipal;
 
     @Override

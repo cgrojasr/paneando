@@ -4,19 +4,22 @@ public class Producto {
     private Integer id_producto;
     private String nombre;
     private Double valor_venta;
+    private  Integer image;
 
     public Producto() {
     }
 
-    public Producto(String nombre, Double valor_venta) {
+    public Producto(String nombre, Double valor_venta, Integer image) {
         this.nombre = nombre;
         this.valor_venta = valor_venta;
+        this.image = image;
     }
 
-    public Producto(Integer id_producto, String nombre, Double valor_venta) {
+    public Producto(Integer id_producto, String nombre, Double valor_venta, Integer image) {
         this.id_producto = id_producto;
         this.nombre = nombre;
         this.valor_venta = valor_venta;
+        this.image = image;
     }
 
     public Integer getId_producto() {
@@ -41,5 +44,13 @@ public class Producto {
 
     public void setValor_venta(Double valor_venta) {
         this.valor_venta = valor_venta;
+    }
+
+    public Integer getImage() {
+        return image;
+    }
+
+    public void setImage(Integer image) {
+        this.image = image;
     }
 }

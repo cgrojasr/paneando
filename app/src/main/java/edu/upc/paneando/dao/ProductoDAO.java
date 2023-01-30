@@ -29,6 +29,7 @@ public class ProductoDAO {
             ContentValues productoContent = new ContentValues();
             productoContent.put("nombre", objProducto.getNombre());
             productoContent.put("valor_venta", objProducto.getValor_venta());
+            productoContent.put("image", objProducto.getImage());
             dbSQLite.insert("producto", null, productoContent);
         }catch (Exception e){
             Log.d("=>", e.getMessage());
@@ -41,12 +42,18 @@ public class ProductoDAO {
         try{
            Cursor cursor = dbSQLite.rawQuery("SELECT * FROM producto", null);
            while (cursor.moveToNext()){
-               productos.add(new Producto(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2)));
+               productos.add(new Producto(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getInt(3)));
            }
        }
        catch (Exception e){
            Log.d("=>", e.getMessage());
        }
         return productos;
+    }
+
+    public void Eliminar_Productos(){
+        dbSQLite = db.getWritableDatabase();
+        dbSQLite.delete("producto", null, null);
+        dbSQLite.close();
     }
 }

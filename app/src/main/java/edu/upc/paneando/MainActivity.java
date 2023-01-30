@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadProductos();
-        List<Producto> productos = objProductoDAO.Listar();
         setComponents();
 
         btnIngresar.setOnClickListener(view->{
@@ -54,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadProductos(){
         objProductoDAO = new ProductoDAO(this);
-        Producto producto = new Producto("Pan frances", 0.4);
+        objProductoDAO.Eliminar_Productos();
+        Producto producto = new Producto("Pan frances", 0.4, R.drawable.panenado_frances);
         objProductoDAO.Registrar(producto);
-        producto = new Producto("Pan yema", 0.4);
+        producto = new Producto("Pan yema", 0.4, R.drawable.panenado_yema);
         objProductoDAO.Registrar(producto);
-        producto = new Producto("Pan integral", 0.4);
+        producto = new Producto("Pan integral", 0.4, R.drawable.panenado_integral);
         objProductoDAO.Registrar(producto);
     }
 }
