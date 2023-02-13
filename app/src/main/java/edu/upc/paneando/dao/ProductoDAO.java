@@ -29,7 +29,7 @@ public class ProductoDAO {
             ContentValues productoContent = new ContentValues();
             productoContent.put("nombre", objProducto.getNombre());
             productoContent.put("valor_venta", objProducto.getValor_venta());
-            productoContent.put("image", objProducto.getImage());
+            //productoContent.put("image", objProducto.getImage());
             dbSQLite.insert("producto", null, productoContent);
         }catch (Exception e){
             Log.d("=>", e.getMessage());

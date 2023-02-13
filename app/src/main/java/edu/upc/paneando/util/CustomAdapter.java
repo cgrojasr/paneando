@@ -48,7 +48,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         Producto producto = productos.get(position);
         holder.txtNombre.setText(producto.getNombre()+"");
         holder.txtValorVenta.setText(producto.getValor_venta().toString()+"");
-        holder.imgProducto.setImageResource(producto.getImage());
+        //holder.imgProducto.setImageResource(producto.getImage());
         holder.btnAgregar.setOnClickListener(view -> {
 //            Intent intent = new Intent(context, CatalogoActivity.class);
 //            context.startActivity(intent);

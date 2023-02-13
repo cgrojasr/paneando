@@ -6,16 +6,28 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.upc.paneando.dao.ProductoDAO;
 import edu.upc.paneando.models.Producto;
 import edu.upc.paneando.util.CustomAdapter;
+import edu.upc.paneando.util.VolleyCallBack;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,11 +90,39 @@ public class ProductosFragment extends Fragment {
         rcvProductos = view.findViewById(R.id.rcvProductos);
         rcvProductos.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        objProductoDAO = new ProductoDAO(getContext());
-        productos = objProductoDAO.Listar();
-        customAdapter = new CustomAdapter(getContext(), productos);
-        rcvProductos.setAdapter(customAdapter);
+        //objProductoDAO = new ProductoDAO(getContext());
+        //productos = objProductoDAO.Listar();
+        Listar_Productos(new VolleyCallBack() {
+            @Override
+            public void onSuccess() {
+                customAdapter = new CustomAdapter(getContext(), productos);
+                rcvProductos.setAdapter(customAdapter);
+            }
+        });
 
         return view;
+    }
+
+    public void Listar_Productos(final VolleyCallBack callBack){
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String api = "http://10.0.2.2:5198/api/Producto";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, api,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson = new Gson();
+                        Type type = new TypeToken<List<Producto>>(){}.getType();
+                        productos = gson.fromJson(response, type);
+                        Log.e("api", "json: " + response);
+                        callBack.onSuccess();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("api", "error: " + error);
+            }
+        });
+
+        queue.add(stringRequest);
     }
 }

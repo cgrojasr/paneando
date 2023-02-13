@@ -1,24 +1,14 @@
 package edu.upc.paneando;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import edu.upc.paneando.dao.CarritoItemDAO;
 import edu.upc.paneando.dao.ProductoDAO;
-import edu.upc.paneando.models.CarritoItem;
 import edu.upc.paneando.models.Producto;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadProductos(){
         //objProductoDAO = new ProductoDAO(this);
+        //List<Producto> lista = objProductoService.Listar_Combobox();
 
         //Limpieza de las tablas
         objProductoDAO.Eliminar_Todo();

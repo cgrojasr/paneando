@@ -1,33 +1,33 @@
 package edu.upc.paneando.models;
 
 public class Producto {
-    private Integer id_producto;
+    private Integer idProducto;
     private String nombre;
-    private Double valor_venta;
-    private  Integer image;
+    private Double valorVenta;
+    //private  Integer image = null;
 
     public Producto() {
     }
 
     public Producto(String nombre, Double valor_venta, Integer image) {
         this.nombre = nombre;
-        this.valor_venta = valor_venta;
-        this.image = image;
+        this.valorVenta = valor_venta;
+        //this.image = image;
     }
 
     public Producto(Integer id_producto, String nombre, Double valor_venta, Integer image) {
-        this.id_producto = id_producto;
+        this.idProducto = id_producto;
         this.nombre = nombre;
-        this.valor_venta = valor_venta;
-        this.image = image;
+        this.valorVenta = valor_venta;
+        //this.image = image;
     }
 
     public Integer getId_producto() {
-        return id_producto;
+        return idProducto;
     }
 
     public void setId_producto(Integer id_producto) {
-        this.id_producto = id_producto;
+        this.idProducto = id_producto;
     }
 
     public String getNombre() {
@@ -39,18 +39,18 @@ public class Producto {
     }
 
     public Double getValor_venta() {
-        return valor_venta;
+        return valorVenta;
     }
 
     public void setValor_venta(Double valor_venta) {
-        this.valor_venta = valor_venta;
+        this.valorVenta = valor_venta;
     }
 
-    public Integer getImage() {
-        return image;
-    }
-
-    public void setImage(Integer image) {
-        this.image = image;
-    }
+//    public Integer getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(Integer image) {
+//        this.image = image;
+//    }
 }
